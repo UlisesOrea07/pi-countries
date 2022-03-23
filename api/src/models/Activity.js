@@ -1,5 +1,4 @@
-import { DataTypes } from "sequelize/types";
-
+const { DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     sequelize.define('activity', {
         id: {

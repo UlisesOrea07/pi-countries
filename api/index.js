@@ -18,11 +18,18 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn, Country } = require('./src/db.js');
+const countryInterface = require('./src/interfaces/countryInterface.js');
+const fetch = require('node-fetch');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(3001, async () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
+    const resp = await fetch('https://restcountries.com/v3/all');
+    const data = await resp.json();
+    data?.map(country => {
+      Country.create(countryInterface(country))
+    })
   });
 });
