@@ -1,28 +1,40 @@
-import Card from './components/Card';
+import { Routes, Route } from 'react-router-dom';
 import Cards from './components/Cards';
 import Navbar from './components/Navbar';
 import NewActivity from './components/NewActivity';
 import Searchbar from './components/Searchbar';
-import AddCancel from './modals/CancelModal';
-import WarningModal from './modals/WarningModal';
 import CountryDetail from './Pages/CountryDetail';
 import NotFound from './Pages/NotFound';
 import Principal from './Pages/Principal';
 import { GlobalStyled } from './utils/GlobalStyled';
-import ResponseWarning from './warnings/ResponseWarning';
 
 function App() {
   return (
     <>
       <GlobalStyled />
       <Navbar />
-      {/* <Searchbar />
-      <Cards /> */}
-      {/* <CountryDetail /> */}
-      {/* <NewActivity /> */}
-      {/* <NotFound /> */}
-      {/* <ResponseWarning /> */}
-      <Principal />
+      <Routes>
+        <Route
+          path='/'
+          element={<Principal />}
+        />
+        <Route
+          path='/home'
+          element={<Cards />}
+        />
+        <Route
+          path='/details/:id'
+          element={<CountryDetail />}
+        />
+        <Route
+          path='add'
+          element={<NewActivity />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+      </Routes>
     </>
 
   );

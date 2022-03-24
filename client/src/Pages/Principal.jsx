@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import heroMobile from '../images/heroMobile.jpg';
 import heroNormal from '../images/heroNormal.jpg';
@@ -10,7 +11,9 @@ const Principal = () => {
             <Description>
                 Application to know characteristics of countries.
             </Description>
-            <Button>Go to go</Button>
+            <Link to='/home'>
+                <Button>Go to go</Button>
+            </Link>
         </Container>
     );
 }

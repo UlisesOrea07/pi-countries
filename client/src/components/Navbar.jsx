@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "./../images/NavbarLogo.png"
 
@@ -7,7 +8,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <Nav>
-            <Logo href="">
+            <Logo to='/home'>
                 <img src={logo} alt="not found" />
             </Logo>
             <Hamburger onClick={() => setIsOpen(!isOpen)}>
@@ -18,8 +19,8 @@ const Navbar = () => {
 
 
             <Menu isOpen={isOpen}>
-                <MenuLink href="">HOME</MenuLink>
-                <MenuLink href="">NEW ACTIVITY</MenuLink>
+                <MenuLink to='/home' onClick={() => setIsOpen(!isOpen)}> HOME </MenuLink>
+                <MenuLink to='/add' onClick={() => setIsOpen(!isOpen)}> NEW ACTIVITY </MenuLink>
             </Menu>
         </Nav>
     );
@@ -55,7 +56,7 @@ const Hamburger = styled.div`
     }
 `;
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
     padding: 1rem 2rem;
     cursor: pointer;
     text-align: center;
@@ -70,6 +71,11 @@ const MenuLink = styled.a`
     }
     @media(max-width: 768px){
         width: 100%;
+        text-decoration: none;
+
+        &:focus, &:hover, &:visited, &:link, &:active {
+         text-decoration: none;
+        }
     } 
 `;
 const Menu = styled.div`
@@ -83,11 +89,12 @@ const Menu = styled.div`
         position: absolute;
         top:80px;
         left: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
-        width: 90%;
+        width: 100%;
         height: 90vh;
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        opacity: 0.95;
         transition:  0.3s ease-in;
         z-index: 1;
         /* overflow: hidden;
@@ -98,9 +105,10 @@ const Menu = styled.div`
         transition: max-height 0.3s ease-in;         */
     }   
 `;
-const Logo = styled.a`
-    padding: 1rem 0;
+const Logo = styled(Link)`
+    margin: 0.8rem 0;
     text-decoration: none;
+   
     /* font-weight: 800;
     font-size: 1.7rem;
     color: white; */
