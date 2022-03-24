@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Card from "./Card";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getCountries } from '../actions/countriesAction';
+import Loading from "./Loading";
 const Cards = () => {
+    const dispatch = useDispatch();
+    const countries = useSelector(state => state.countries.countriesLoaded);
+    const loading = useSelector(state => state.aux.busy);
+    const errors = useSelector(state => state.errors);
+    useEffect(() => {
+        dispatch(getCountries())
+    }, [dispatch]);
+
+    console.log(countries)
+    console.log(loading)
     return (
-        <Container>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-        </Container>
+        loading ? <Loading /> :
+            <Container>
+                {
+                    countries?.map(country => {
+                        return (
+                            <Card
+                                key={country.id}
+                                id={country.id}
+                                name={country.name}
+                                flag={country.flag}
+                                continent={country.continent}
+                            />
+                        )
+                    })
+
+                }
+            </Container>
     )
 }
 //designe 

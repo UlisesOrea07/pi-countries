@@ -1,20 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-const Card = () => {
+const Card = ({ name, flag, continent }) => {
     return (
         <ContainerCard>
             <HeadCard>
                 <span>Country</span>
-                <h2>Mexico</h2>
+                <h2>{name}</h2>
             </HeadCard>
             <BodyCard>
                 <span>Flag</span>
-                <img src="https://flagcdn.com/w320/mx.png" width="80px" alt="imagen not found" />
+                <img src={flag} width="80px" alt="imagen not found" />
             </BodyCard>
             <FooterCard>
                 <span>Continent</span>
-                <h3>America</h3>
+                <h3>{continent}</h3>
             </FooterCard>
         </ContainerCard>
     );

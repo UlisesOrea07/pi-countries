@@ -72,7 +72,6 @@ const MenuLink = styled(Link)`
     @media(max-width: 768px){
         width: 100%;
         text-decoration: none;
-
         &:focus, &:hover, &:visited, &:link, &:active {
          text-decoration: none;
         }

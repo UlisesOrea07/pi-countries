@@ -1,4 +1,5 @@
 import { GET_COUNTRIES, GET_COUNTRY, LOAD, ERROR } from "../actions/actionsTypes";
+
 const initialState = {
     countriesLoaded: [],
     countryDetail: {},
@@ -6,35 +7,30 @@ const initialState = {
     error: null
 };
 
-const countriesReducer = (state = initialState, action) => {
+export const countriesReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_COUNTRIES:
             return {
                 ...state,
-                countriesLoaded: action.payload,
-                busy: false,
-                error: null
+                countriesLoaded: action.payload
             }
         case GET_COUNTRY:
             return {
                 ...state,
-                countryDetail: action.payload,
-                busy: false,
-                error: null
+                countryDetail: action.payload
             }
         case LOAD:
             return {
-                ...state,
                 busy: true,
                 error: null
             }
+
         case ERROR:
             return {
-                ...state,
                 busy: false,
                 error: action.payload
             }
+
         default: return state;
     }
 };
-export default countriesReducer;

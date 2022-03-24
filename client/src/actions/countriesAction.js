@@ -1,5 +1,6 @@
 import { GET_COUNTRIES, GET_COUNTRY, LOAD, ERROR } from "./actionsTypes";
 const BASEURL = 'http://localhost:3001';
+
 export const getCountries = () => {
     return dispatch => {
         try {
@@ -9,10 +10,17 @@ export const getCountries = () => {
             return fetch(`${BASEURL}/countries`)
                 .then(response => response.json())
                 .then(data => {
-                    dispatch({
-                        type: GET_COUNTRIES,
-                        payload: data
-                    })
+                    if (data.length > 0) {
+                        dispatch({
+                            type: GET_COUNTRIES,
+                            payload: data
+                        })
+                    } else {
+                        dispatch({
+                            type: ERROR,
+                            payload: data
+                        })
+                    }
                 });
         } catch (error) {
             dispatch({
