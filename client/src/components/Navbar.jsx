@@ -30,6 +30,7 @@ const Navbar = () => {
 const Nav = styled.div`
    display: flex; 
    position: fixed;
+   z-index: 5;
    top: 0;
    width: 100%;
    padding: 0 2rem;
@@ -98,7 +99,7 @@ const Menu = styled.div`
         align-items: center;
         opacity: 0.95;
         transition:  0.3s ease-in;
-        z-index: 1;
+        z-index: 4;
         /* overflow: hidden;
         flex-direction: column;
         width: 100%;  

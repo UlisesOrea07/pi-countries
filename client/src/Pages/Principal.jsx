@@ -31,6 +31,7 @@ const Container = styled.div`
     background-position: center center center;
     position: relative;    
     width: 100vw;
+    margin-top: 80px;
     @media(max-width: 768px){
         background-image: url(${heroMobile});
         background-repeat: no-repeat;

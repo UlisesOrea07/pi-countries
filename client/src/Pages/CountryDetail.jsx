@@ -54,6 +54,7 @@ const Container = styled.div`
     align-items: center;
     margin-top: 20px;
     height: 80vh;
+    margin-top: 80px;
 `;
 const Title = styled.h1``;
 const Information = styled.div`
