@@ -4,15 +4,18 @@ import Navbar from './components/Navbar';
 import NewActivity from './components/NewActivity';
 import Searchbar from './components/Searchbar';
 import CountryDetail from './Pages/CountryDetail';
+import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Principal from './Pages/Principal';
 import { GlobalStyled } from './utils/GlobalStyled';
+import ErrorNotification from './warnings/ErrorWarning';
 
 function App() {
   return (
     <>
       <GlobalStyled />
       <Navbar />
+      <ErrorNotification />
       <Routes>
         <Route
           path='/'
@@ -20,7 +23,7 @@ function App() {
         />
         <Route
           path='/home'
-          element={<Cards />}
+          element={<Home />}
         />
         <Route
           path='/details/:id'

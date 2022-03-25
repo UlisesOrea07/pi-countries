@@ -9,23 +9,26 @@ export const getCountries = () => {
             })
             return fetch(`${BASEURL}/countries`)
                 .then(response => response.json())
-                .then(data => {
-                    if (data.length > 0) {
+                .then(json => {
+                    if (json.status === "ok") {
                         dispatch({
                             type: GET_COUNTRIES,
-                            payload: data
+                            payload: json.data,
+                            error: null
                         })
                     } else {
                         dispatch({
-                            type: ERROR,
-                            payload: data
+                            type: GET_COUNTRIES,
+                            payload: null,
+                            error: json.error
                         })
                     }
                 });
         } catch (error) {
             dispatch({
-                type: ERROR,
-                payload: error,
+                type: GET_COUNTRIES,
+                payload: null,
+                error: error
             })
         }
     }
@@ -39,16 +42,27 @@ export const getCountry = (id) => {
             })
             return fetch(`${BASEURL}/country/${id}`)
                 .then(response => response.json())
-                .then(data => {
-                    dispatch({
-                        type: GET_COUNTRY,
-                        payload: data
-                    })
+                .then(json => {
+                    if (json.status === 'ok') {
+                        dispatch({
+                            type: GET_COUNTRY,
+                            payload: json.data,
+                            error: null
+                        })
+                    } else {
+                        dispatch({
+                            type: GET_COUNTRY,
+                            payload: null,
+                            error: json.error
+                        })
+                    }
+
                 });
         } catch (error) {
             dispatch({
-                type: ERROR,
-                payload: error,
+                type: GET_COUNTRY,
+                payload: null,
+                error: error
             });
         }
     };

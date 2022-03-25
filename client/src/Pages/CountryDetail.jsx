@@ -1,33 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getCountry } from "../actions/countriesAction";
+import Loading from "../components/Loading";
 
 const CountryDetail = () => {
+    const loading = useSelector(state => state.countries.load);
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    // const { name, continent, capital, subregion, area, population, flag } = country;
+    console.log(loading + "1111111")
+    useEffect(() => {
+        dispatch(getCountry(id));
+    }, [dispatch]);
+    const country = useSelector(state => state.countries.countryDetail)
+
     return (
-        <Container>
-            <Title>
-                Mexico
-            </Title>
-            <Information>
-                <p><span>Oficial name: </span> Estados Unidos Mexicanos</p>
-                <p><span>Continent: </span> America</p>
-                <p><span>Capital: </span> CDMX</p>
-                <p><span>Subregion: </span> North America</p>
-                <p><span>Area: </span> 1964375</p>
-                <p><span>Population</span> 128932753</p>
-            </Information>
-            <ImageContainer>
-                <h4>Flag</h4>
-                <img src="https://flagcdn.com/w320/mx.png" width="200px" alt="imge not found" />
-            </ImageContainer>
-            <ActivityContainer>
-                <h3>Tourist Activities</h3>
-                <p>Example1</p>
-                <p>Example1</p>
-                <p>Example1</p>
-                <p>Example1</p>
-                <p>Example1</p>
-            </ActivityContainer>
-        </Container>
+        loading ? <Loading /> : country ?
+            <Container>
+                <Title>
+                    {country.name}
+                </Title>
+                <Information>
+                    <p><span>Oficial name: </span> {country.name}</p>
+                    <p><span>Continent: </span> {country.continent}</p>
+                    <p><span>Capital: </span> {country.capital}</p>
+                    <p><span>Subregion: </span> {country.subregion}</p>
+                    <p><span>Area: </span> {country.area}</p>
+                    <p><span>Population</span> {country.population}</p>
+                </Information>
+                <ImageContainer>
+                    <h4>Flag</h4>
+                    <img src={country.flag} width="200px" alt="imge not found" />
+                </ImageContainer>
+                <ActivityContainer>
+                    <h3>Tourist Activities</h3>
+                    <p>Example1</p>
+                    <p>Example1</p>
+                    <p>Example1</p>
+                    <p>Example1</p>
+                    <p>Example1</p>
+                </ActivityContainer>
+            </Container> : null
     )
 }
 //Designe

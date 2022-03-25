@@ -3,8 +3,7 @@ import { GET_COUNTRIES, GET_COUNTRY, LOAD, ERROR } from "../actions/actionsTypes
 const initialState = {
     countriesLoaded: [],
     countryDetail: {},
-    busy: false,
-    error: null
+    load: false
 };
 
 export const countriesReducer = (state = initialState, action) => {
@@ -12,23 +11,20 @@ export const countriesReducer = (state = initialState, action) => {
         case GET_COUNTRIES:
             return {
                 ...state,
-                countriesLoaded: action.payload
+                countriesLoaded: action.payload,
+                load: false,
+                error: null
             }
         case GET_COUNTRY:
             return {
                 ...state,
-                countryDetail: action.payload
+                countryDetail: action.payload,
+                load: false,
+                error: null
             }
         case LOAD:
             return {
-                busy: true,
-                error: null
-            }
-
-        case ERROR:
-            return {
-                busy: false,
-                error: action.payload
+                load: true
             }
 
         default: return state;

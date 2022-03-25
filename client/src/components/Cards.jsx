@@ -7,15 +7,14 @@ import Loading from "./Loading";
 const Cards = () => {
     const dispatch = useDispatch();
     const countries = useSelector(state => state.countries.countriesLoaded);
-    const loading = useSelector(state => state.aux.busy);
-    const errors = useSelector(state => state.errors);
+    const loading = useSelector(state => state.countries.load);
     useEffect(() => {
         dispatch(getCountries())
     }, [dispatch]);
 
-    console.log(countries)
-    console.log(loading)
+
     return (
+
         loading ? <Loading /> :
             <Container>
                 {

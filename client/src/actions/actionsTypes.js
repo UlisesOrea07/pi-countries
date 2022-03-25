@@ -8,4 +8,4 @@ export const GET_COUNTRY = 'GET_COUNTRY';
 
 // Aux actions
 export const LOAD = 'LOAD';
-export const ERROR = 'ERROR';
+export const HIDE_ERROR = 'HIDE_ERROR';

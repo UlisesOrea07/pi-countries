@@ -5,8 +5,7 @@ const Searchbar = () => {
     return (
         <Wrapper>
             <Search type="search" placeholder="Search Country" />
-            <select />
-            <label><button>A-Z</button><button>A-D</button></label>
+
         </Wrapper>
     )
 }

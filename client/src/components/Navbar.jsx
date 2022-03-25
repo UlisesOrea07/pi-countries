@@ -29,6 +29,9 @@ const Navbar = () => {
 //Style section
 const Nav = styled.div`
    display: flex; 
+   position: fixed;
+   top: 0;
+   width: 100%;
    padding: 0 2rem;
    height: 80px;
    justify-content: space-between;
