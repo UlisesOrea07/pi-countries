@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { getCountryByName } from "../actions/countriesAction"
 
 const Searchbar = () => {
+    const [expresion, setExpresion] = useState('');
+    const dispatch = useDispatch();
+
+    const handleChange = (event) => {
+        setExpresion(event.target.value);
+    };
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        if (expresion.trim() === '') return null;
+        dispatch(getCountryByName(expresion));
+    }
     return (
         <Wrapper>
-            <SeacrhContainer>
-                <Search type="search" placeholder="Search Country" />
-                <SearchButton>Search</SearchButton>
+            <SeacrhContainer onSubmit={handleSearch}>
+                <Search onChange={handleChange} type="text" placeholder="Search Country" />
+                <SearchButton onClick={handleSearch} type="submit">Search</SearchButton>
             </SeacrhContainer>
 
         </Wrapper>
@@ -33,7 +47,7 @@ const Search = styled.input`
     box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
     width: 100%;    
 `;
-const SeacrhContainer = styled.div`
+const SeacrhContainer = styled.form`
     position: relative;
     width: 300px;
     height: 30px;

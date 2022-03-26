@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY, LOAD, ERROR } from "./actionsTypes";
+import { GET_COUNTRIES, GET_COUNTRY, LOAD } from "./actionsTypes";
 const BASEURL = 'http://localhost:3001';
 
 export const getCountries = () => {
@@ -16,6 +16,39 @@ export const getCountries = () => {
                             payload: json.data,
                             error: null
                         })
+                    } else {
+                        dispatch({
+                            type: GET_COUNTRIES,
+                            payload: null,
+                            error: json.error
+                        })
+                    }
+                });
+        } catch (error) {
+            dispatch({
+                type: GET_COUNTRIES,
+                payload: null,
+                error: error
+            })
+        }
+    }
+};
+
+export const getCountryByName = (expresion) => {
+    return dispatch => {
+        try {
+            dispatch({
+                type: LOAD
+            });
+            return fetch(`${BASEURL}/countries?expresion=${expresion}`)
+                .then(response => response.json())
+                .then(json => {
+                    if (json.status === 'ok') {
+                        dispatch({
+                            type: GET_COUNTRIES,
+                            payload: json.data,
+                            error: null
+                        });
                     } else {
                         dispatch({
                             type: GET_COUNTRIES,
