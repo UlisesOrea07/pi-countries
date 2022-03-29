@@ -29,7 +29,7 @@ const Searchbar = () => {
 
 const Wrapper = styled.div`
    width: 300px;
-   margin: 30px auto;
+   margin: 10px auto;
 `;
 const Search = styled.input`
     position: absolute;

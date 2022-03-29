@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY, LOAD, ERROR } from "../actions/actionsTypes";
+import { GET_COUNTRIES, GET_COUNTRY, LOAD, ORDER_ALPHA_AZ, ORDER_ALPHA_ZA, ORDER_POPULATION_ASC, ORDER_POPULATION_DESC } from "../actions/actionsTypes";
 
 const initialState = {
     countriesLoaded: [],
@@ -26,6 +26,29 @@ export const countriesReducer = (state = initialState, action) => {
             return {
                 load: true
             }
+
+        case ORDER_ALPHA_AZ:
+            return {
+                ...state,
+                countriesLoaded: action.payload,
+            }
+        case ORDER_ALPHA_ZA:
+            return {
+                ...state,
+                countriesLoaded: action.payload,
+            }
+
+        case ORDER_POPULATION_ASC:
+            return {
+                ...state,
+                countriesLoaded: action.payload
+            }
+        case ORDER_POPULATION_DESC:
+            return {
+                ...state,
+                countriesLoaded: action.payload
+            }
+
 
         default: return state;
     }

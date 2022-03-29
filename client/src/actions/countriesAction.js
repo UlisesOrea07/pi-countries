@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY, LOAD } from "./actionsTypes";
+import { GET_COUNTRIES, GET_COUNTRY, LOAD, ORDER_ALPHA_ZA, ORDER_ALPHA_AZ, ORDER_POPULATION_ASC, ORDER_POPULATION_DESC } from "./actionsTypes";
 const BASEURL = 'http://localhost:3001';
 
 export const getCountries = () => {
@@ -99,4 +99,52 @@ export const getCountry = (id) => {
             });
         }
     };
+};
+
+export const orderAlphaA = (array) => {
+    return dispatch => {
+        array.sort((a, b) => {
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+            return 0
+        })
+        dispatch({
+            type: ORDER_ALPHA_AZ,
+            payload: [...array]
+        })
+    }
+};
+
+export const orderAlphaZ = (array) => {
+    return dispatch => {
+        array.reverse((a, b) => {
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+            return 0
+        })
+        dispatch({
+            type: ORDER_ALPHA_ZA,
+            payload: [...array]
+        })
+    }
+};
+
+export const orderAsc = (array) => {
+    return dispatch => {
+        array.sort((a, b) => a.population - b.population);
+        dispatch({
+            type: ORDER_POPULATION_ASC,
+            payload: [...array]
+        })
+    }
+};
+
+export const orderDesc = (array) => {
+    return dispatch => {
+        array.reverse((a, b) => a.population - b.population);
+        dispatch({
+            type: ORDER_POPULATION_DESC,
+            payload: [...array]
+        })
+    }
 };
