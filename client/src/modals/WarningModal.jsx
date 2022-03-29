@@ -1,19 +1,20 @@
 import styled from "styled-components"
+import { useEffect, useState } from "react";
 
+const WarningModal = ({ show }) => {
 
-const WarningModal = () => {
     return (
         <>
+            {show &&
+                <Overlay >
+                    <ModalContainer>
+                        <p>Add</p>
+                        <p>Succefuly</p>
+                        <img src="https://images.vexels.com/media/users/3/143372/isolated/lists/6e633a235ea0d523078e667b9f84f15b-marca-de-verificacion-azul.png" width="30px" />
 
-            <Overlay>
-                <ModalContainer>
-                    <p>Add</p>
-                    <p>Succefuly</p>
-                    <img src="https://images.vexels.com/media/users/3/143372/isolated/lists/6e633a235ea0d523078e667b9f84f15b-marca-de-verificacion-azul.png" width="30px" />
-
-                </ModalContainer>
-            </Overlay>
-
+                    </ModalContainer>
+                </Overlay>
+            }
         </>
     );
 }

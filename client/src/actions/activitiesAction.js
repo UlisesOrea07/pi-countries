@@ -1,4 +1,4 @@
-import { GET_ACTIVITIES, ADD_ACTIVITY, LOAD, ERROR } from "./actionsTypes";
+import { GET_ACTIVITIES, ADD_ACTIVITY, LOAD } from "./actionsTypes";
 const BASEURL = 'http://localhost:3001';
 export const getActivities = () => {
     return (dispatch) => {
@@ -8,16 +8,26 @@ export const getActivities = () => {
             })
             return fetch(`${BASEURL}/activities`)
                 .then(response => response.json())
-                .then(data => {
-                    dispatch({
-                        type: GET_ACTIVITIES,
-                        payload: data
-                    })
+                .then(json => {
+                    if (json.status) {
+                        dispatch({
+                            type: GET_ACTIVITIES,
+                            payload: json.data,
+                            error: null
+                        })
+                    } else {
+                        dispatch({
+                            type: GET_ACTIVITIES,
+                            payload: null,
+                            error: json.error
+                        })
+                    }
                 })
         } catch (error) {
             dispatch({
-                type: ERROR,
-                payload: error,
+                type: GET_ACTIVITIES,
+                payload: null,
+                error: error
             })
         }
     }
@@ -36,16 +46,26 @@ export const postActivity = (activity) => {
             }
             return fetch(`${BASEURL}/activity`, requesOptions)
                 .then(response => response.json())
-                .then(data => {
-                    dispatch({
-                        type: ADD_ACTIVITY,
-                        payload: data
-                    })
+                .then(json => {
+                    if (json.status === 'ok') {
+                        dispatch({
+                            type: ADD_ACTIVITY,
+                            payload: json.data,
+                            error: null
+                        });
+                    } else {
+                        dispatch({
+                            type: ADD_ACTIVITY,
+                            payload: null,
+                            error: json.error
+                        })
+                    };
                 })
         } catch (error) {
             dispatch({
-                type: ERROR,
-                payload: error,
+                type: ADD_ACTIVITY,
+                payload: null,
+                error: error,
             })
         }
     }

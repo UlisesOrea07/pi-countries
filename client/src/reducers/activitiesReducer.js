@@ -1,8 +1,8 @@
-import { ADD_ACTIVITY, ERROR, GET_ACTIVITIES, LOAD } from "../actions/actionsTypes";
+import { ADD_ACTIVITY, GET_ACTIVITIES } from "../actions/actionsTypes";
 
 const initialState = {
     activitiesLoaded: [],
-    activityAdded: {}
+    activityAdded: null
 };
 
 export const activiesReducer = (state = initialState, action) => {
