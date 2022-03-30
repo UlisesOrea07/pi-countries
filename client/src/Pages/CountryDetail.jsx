@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getCountry } from "../actions/countriesAction";
+import Collapsible from "../components/Collapsible";
 import Loading from "../components/Loading";
 
 const CountryDetail = () => {
@@ -10,7 +11,6 @@ const CountryDetail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     // const { name, continent, capital, subregion, area, population, flag } = country;
-    console.log(loading + "1111111")
     useEffect(() => {
         dispatch(getCountry(id));
     }, [dispatch]);
@@ -23,12 +23,12 @@ const CountryDetail = () => {
                     {country.name}
                 </Title>
                 <Information>
-                    <p><span>Oficial name: </span> {country.name}</p>
-                    <p><span>Continent: </span> {country.continent}</p>
-                    <p><span>Capital: </span> {country.capital}</p>
-                    <p><span>Subregion: </span> {country.subregion}</p>
-                    <p><span>Area: </span> {country.area}</p>
-                    <p><span>Population</span> {country.population}</p>
+                    <p><span>Oficial name: </span><strong>{country.name}</strong> </p>
+                    <p><span>Continent: </span> <strong>{country.continent}</strong> </p>
+                    <p><span>Capital: </span> <strong> {country.capital}</strong></p>
+                    <p><span>Subregion: </span> <strong>{country.subregion}</strong></p>
+                    <p><span>Area: </span> <strong>{country.area}</strong></p>
+                    <p><span>Population</span> <strong>{country.population}</strong></p>
                 </Information>
                 <ImageContainer>
                     <h4>Flag</h4>
@@ -39,9 +39,8 @@ const CountryDetail = () => {
                     {
                         country?.activities?.map(activity => {
                             return (
-                                <p key={activity.id}>{activity.name}</p>
+                                <Collapsible key={activity.id} activity={activity} />
                             )
-
                         })
                     }
                 </ActivityContainer>
@@ -74,6 +73,7 @@ const ImageContainer = styled.div`
 `;
 const ActivityContainer = styled.div`
     display: flex;
+    width: 80%;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
