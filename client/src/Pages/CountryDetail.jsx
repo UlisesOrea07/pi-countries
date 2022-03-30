@@ -15,7 +15,7 @@ const CountryDetail = () => {
         dispatch(getCountry(id));
     }, [dispatch]);
     const country = useSelector(state => state.countries.countryDetail)
-
+    console.log(country);
     return (
         loading ? <Loading /> : country ?
             <Container>
@@ -36,11 +36,14 @@ const CountryDetail = () => {
                 </ImageContainer>
                 <ActivityContainer>
                     <h3>Tourist Activities</h3>
-                    <p>Example1</p>
-                    <p>Example1</p>
-                    <p>Example1</p>
-                    <p>Example1</p>
-                    <p>Example1</p>
+                    {
+                        country?.activities?.map(activity => {
+                            return (
+                                <p key={activity.id}>{activity.name}</p>
+                            )
+
+                        })
+                    }
                 </ActivityContainer>
             </Container> : null
     )
@@ -50,7 +53,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-top: 20px;
     height: 80vh;

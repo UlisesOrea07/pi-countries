@@ -34,6 +34,7 @@ export const getActivities = () => {
 };
 
 export const postActivity = (activity) => {
+    console.log(activity)
     return dispatch => {
         try {
             dispatch({

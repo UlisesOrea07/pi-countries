@@ -13,7 +13,7 @@ const NewActivity = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const Allcountries = useSelector(state => state.countries.countriesLoaded);
-    const activityAdded = useSelector(state => state.activities.activityAdded);
+    const [countrySelected, setCountrySelected] = useState([]);
 
     useEffect(() => {
         dispatch(getCountries());
@@ -37,15 +37,19 @@ const NewActivity = () => {
     const onClose = (id, e) => {
         e.preventDefault();
         const country = Allcountries.filter(c => c.id === id);
-        // setCountriesSelected(oldCountries => oldCountries.filter(country => country.id !== id));
+        setCountrySelected(countrySelected?.filter(country => country.id !== id));
         country[0].isDisable = false;
-        setNewActivity({ ...newActivity, countries: newActivity.countries?.filter(c => c.id !== id) });
+        // setNewActivity({ ...newActivity, countries: newActivity.countries?.filter(c => c.id !== id) });
+        setNewActivity({ ...newActivity, countries: newActivity.countries?.filter(c => id !== id) })
+        console.log(newActivity.countries)
     }
     const handleSelectCountries = (e) => {
         e.preventDefault();
         const country = Allcountries.filter(c => c.name === e.target.value);
+        setCountrySelected([country[0], ...countrySelected]);
         country[0].isDisable = true;
-        setNewActivity({ ...newActivity, countries: [country[0], ...newActivity.countries] });
+        // setNewActivity({ ...newActivity, countries: [country[0], ...newActivity.countries] });
+        setNewActivity({ ...newActivity, countries: [country[0].id, ...newActivity.countries] })
     };
 
 
@@ -172,7 +176,7 @@ const NewActivity = () => {
 
                     <CountryBox>
                         {
-                            newActivity.countries?.map(country => {
+                            countrySelected?.map(country => {
                                 return (
                                     <Pill key={country.id} country={country} onClose={onClose} />
                                 );

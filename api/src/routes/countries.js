@@ -43,8 +43,13 @@ router.get('/countries', async (req, res) => {
 router.get('/country/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const country = await Country.findByPk(id);
-        console.log(country)
+        const country = await Country.findByPk(id, {
+            include: [
+                {
+                    model: Activity
+                }
+            ]
+        });
         country ? res.json({ "status": "ok", "data": country, "message": "Response succefuly" })
             : res.json({ status: "not", error: "Not found" });
     } catch (error) {
