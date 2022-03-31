@@ -14,11 +14,13 @@ const Toolbar = () => {
     const continents = useSelector(state => state.countries.continentsLoaded);
     const dispatch = useDispatch();
     const [filterSelected, setFilterSelected] = useState([]);
-    const [isActivity, setIsActivity] = useState(true);
+    const [isActivity, setIsActivity] = useState(false);
+
     useEffect(() => {
         dispatch(getContinents());
         dispatch(getActivities());
     }, [dispatch])
+
     const handleFilter = (e) => {
         const filter = e.target.value;
         if (filter === "Activity") {
@@ -27,7 +29,6 @@ const Toolbar = () => {
             setIsActivity(true);
         } else if (filter === "Continent") {
             dispatch(getContinents());
-            console.log(continents)
             setFilterSelected(continents);
             setIsActivity(false);
         } else {
@@ -36,11 +37,10 @@ const Toolbar = () => {
     };
     const handlerAction = (e) => {
         const action = e.target.value;
-        if (!isActivity) {
-            dispatch(getCountriesByContinent(action));
-
-        } else {
+        if (isActivity) {
             dispatch(getCountriesByActivity(action));
+        } else {
+            dispatch(getCountriesByContinent(action));
         }
     };
 

@@ -44,7 +44,7 @@ const Cards = () => {
                         })
 
                     }
-                    <Pagination totalRecords={totalCountries} pageLimit={3} onPageChanged={onPageChanged} />
+                    <Pagination totalRecords={totalCountries} pageLimit={9} onPageChanged={onPageChanged} />
 
                 </Container>
             </>

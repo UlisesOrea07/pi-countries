@@ -67,7 +67,7 @@ const MenuLink = styled(Link)`
     text-decoration: none;
     color: blueviolet;
     transition: all 0.3s ease-in;
-    font-size: 0.9rem;
+    font-size: 28px;
     &:hover{
         color: white;
         background: gray;
