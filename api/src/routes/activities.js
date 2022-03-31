@@ -3,10 +3,11 @@ const router = require('express').Router();
 
 router.get('/activities', async (req, res) => {
     try {
-        const activities = await Activity.findAll();
-        res.json(activities);
+        let activities = await Activity.findAll();
+        activities = activities?.map(activity => activity.name);
+        res.json({ "status": "ok", "data": activities, "message": "Response succefuly" });
     } catch (error) {
-        res.send(error);
+        res.send({ status: "error", error: "Something went wrong" + error });
     }
 });
 

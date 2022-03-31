@@ -5,6 +5,9 @@ export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 //Countries actions
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY = 'GET_COUNTRY';
+export const GET_CONTINENTS = 'GET_CONTINENTS';
+export const GET_COUNTRIES_BY_CONTINENT = 'GET_COUNTRIES_BY_CONTINENT';
+export const GET_COUNTRIES_BY_ACTIVITY = 'GET_COUNTRIES_BY_ACTIVITY';
 
 // Aux actions
 export const LOAD = 'LOAD';

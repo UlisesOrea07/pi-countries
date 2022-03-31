@@ -1,11 +1,12 @@
 import { GET_ACTIVITIES, ADD_ACTIVITY, LOAD } from "./actionsTypes";
 const BASEURL = 'http://localhost:3001';
+
 export const getActivities = () => {
     return (dispatch) => {
         try {
-            dispatch({
-                type: LOAD
-            })
+            // dispatch({
+            //     type: LOAD
+            // })
             return fetch(`${BASEURL}/activities`)
                 .then(response => response.json())
                 .then(json => {

@@ -2,7 +2,8 @@ import { ADD_ACTIVITY, GET_ACTIVITIES } from "../actions/actionsTypes";
 
 const initialState = {
     activitiesLoaded: [],
-    activityAdded: null
+    activityAdded: null,
+    load: false
 };
 
 export const activiesReducer = (state = initialState, action) => {
@@ -10,12 +11,16 @@ export const activiesReducer = (state = initialState, action) => {
         case GET_ACTIVITIES:
             return {
                 ...state,
-                activitiesLoaded: action.payload
+                activitiesLoaded: action.payload,
+                load: false,
+                error: null
             }
         case ADD_ACTIVITY:
             return {
                 ...state,
-                activityAdded: action.payload
+                activityAdded: action.payload,
+                load: false,
+                error: null
             }
 
         default: return state;

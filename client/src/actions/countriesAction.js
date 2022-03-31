@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY, LOAD, ORDER_ALPHA_ZA, ORDER_ALPHA_AZ, ORDER_POPULATION_ASC, ORDER_POPULATION_DESC } from "./actionsTypes";
+import { GET_COUNTRIES, GET_COUNTRY, GET_CONTINENTS, GET_COUNTRIES_BY_CONTINENT, GET_COUNTRIES_BY_ACTIVITY, LOAD, ORDER_ALPHA_ZA, ORDER_ALPHA_AZ, ORDER_POPULATION_ASC, ORDER_POPULATION_DESC } from "./actionsTypes";
 const BASEURL = 'http://localhost:3001';
 
 export const getCountries = () => {
@@ -99,6 +99,104 @@ export const getCountry = (id) => {
             });
         }
     };
+};
+
+export const getContinents = () => {
+    return dispatch => {
+        try {
+
+            return fetch(`${BASEURL}/countries/continents`)
+                .then(response => response.json())
+                .then(json => {
+                    if (json.status === 'ok') {
+                        dispatch({
+                            type: GET_CONTINENTS,
+                            payload: json.data,
+                            error: null
+                        })
+                    } else {
+                        dispatch({
+                            type: GET_CONTINENTS,
+                            payload: null,
+                            error: json.error
+                        })
+                    }
+
+                });
+        } catch (error) {
+            dispatch({
+                type: GET_CONTINENTS,
+                payload: null,
+                error: error
+            });
+        }
+    };
+};
+
+export const getCountriesByContinent = (continent) => {
+    return dispatch => {
+        try {
+            dispatch({
+                type: LOAD
+            });
+            return fetch(`${BASEURL}/countries/filter?continent=${continent}`)
+                .then(response => response.json())
+                .then(json => {
+                    if (json.status === 'ok') {
+                        dispatch({
+                            type: GET_COUNTRIES_BY_CONTINENT,
+                            payload: json.data,
+                            error: null
+                        });
+                    } else {
+                        dispatch({
+                            type: GET_COUNTRIES_BY_CONTINENT,
+                            payload: null,
+                            error: json.error
+                        })
+                    }
+                });
+        } catch (error) {
+            dispatch({
+                type: GET_COUNTRIES_BY_CONTINENT,
+                payload: null,
+                error: error
+            })
+        }
+    }
+};
+
+export const getCountriesByActivity = (activity) => {
+    return dispatch => {
+        try {
+            dispatch({
+                type: LOAD
+            });
+            return fetch(`${BASEURL}/countries/activities?activity=${activity}`)
+                .then(response => response.json())
+                .then(json => {
+                    if (json.status === 'ok') {
+                        dispatch({
+                            type: GET_COUNTRIES_BY_ACTIVITY,
+                            payload: json.data,
+                            error: null
+                        });
+                    } else {
+                        dispatch({
+                            type: GET_COUNTRIES_BY_ACTIVITY,
+                            payload: null,
+                            error: json.error
+                        })
+                    }
+                });
+        } catch (error) {
+            dispatch({
+                type: GET_COUNTRIES_BY_ACTIVITY,
+                payload: null,
+                error: error
+            })
+        }
+    }
 };
 
 export const orderAlphaA = (array) => {

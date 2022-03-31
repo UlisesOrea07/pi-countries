@@ -1,6 +1,6 @@
 const { Country, Activity } = require('../db');
 const router = require('express').Router();
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 
 // router.get('/countries', async (req, res) => {
 //     try {
@@ -69,6 +69,38 @@ router.get('/countries/filter', async (req, res) => {
             include: Activity
         });
         res.json({ "status": "ok", "data": countries, "message": "Response succefuly" })
+    } catch (error) {
+        res.send({ status: "error", error: "Something went wrong" + error });
+    }
+});
+
+router.get('/countries/activities', async (req, res) => {
+    try {
+        const { activity } = req.query;
+        const countries = await Country.findAll({
+            include: [
+                {
+                    model: Activity,
+                    attributes: ['name'],
+                    where: {
+                        name: activity
+                    }
+                }
+            ]
+        });
+        res.json({ "status": "ok", "data": countries, "message": "Response succefuly" })
+    } catch (error) {
+        res.send({ status: "error", error: "Something went wrong" + error });
+    }
+});
+
+router.get('/countries/continents', async (req, res) => {
+    try {
+        const continentsObj = await Country.findAll({
+            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('continent')), 'continent']]
+        })
+        const continents = continentsObj?.map(cont => cont.continent);
+        res.json({ "status": "ok", "data": continents, "message": "Response succefuly" })
     } catch (error) {
         res.send({ status: "error", error: "Something went wrong" + error });
     }

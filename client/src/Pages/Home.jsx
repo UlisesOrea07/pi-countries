@@ -2,9 +2,8 @@ import styled from "styled-components";
 import Cards from "../components/Cards";
 import Searchbar from "../components/Searchbar";
 import Toolbar from "../components/Toolbar";
-
-
 const Home = () => {
+
     return (
         <Container>
             <Searchbar />
