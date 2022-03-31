@@ -39,6 +39,8 @@ const Cards = () => {
                                     name={country.name}
                                     flag={country.flag}
                                     continent={country.continent}
+                                    population={country.population}
+                                    area={country.area}
                                 />
                             )
                         })

@@ -1,5 +1,4 @@
-import styled from "styled-components"
-import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const WarningModal = ({ show }) => {
 
@@ -9,8 +8,9 @@ const WarningModal = ({ show }) => {
                 <Overlay >
                     <ModalContainer>
                         <p>Add</p>
-                        <p>Succefuly</p>
-                        <img src="https://images.vexels.com/media/users/3/143372/isolated/lists/6e633a235ea0d523078e667b9f84f15b-marca-de-verificacion-azul.png" width="30px" />
+                        <p></p>
+                        <p>successfully</p>
+                        <img src="https://images.vexels.com/media/users/3/143372/isolated/lists/6e633a235ea0d523078e667b9f84f15b-marca-de-verificacion-azul.png" width="30px" alt="img not found" />
 
                     </ModalContainer>
                 </Overlay>
@@ -39,32 +39,36 @@ const ModalContainer = styled.div`
     height: 200px;
     padding: 20px;
     position: relative;
-    width: 500px;
+    width: 300px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
-`;
-
-
-
-const ModalContent = styled.div`
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-
-    h1{
-        font-size: 42px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
     p{
         font-size: 18px;
         margin-bottom: 20px;
     }
 `;
+
+
+
+// const ModalContent = styled.div`
+//     align-items: center;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     text-align: center;
+
+//     h1{
+//         font-size: 42px;
+//         font-weight: 700;
+//         margin-bottom: 10px;
+//     }
+//     p{
+//         font-size: 18px;
+//         margin-bottom: 20px;
+//     }
+// `;
 
 
 export default WarningModal;

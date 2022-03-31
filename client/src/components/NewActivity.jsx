@@ -41,7 +41,7 @@ const NewActivity = () => {
         country[0].isDisable = false;
         // setNewActivity({ ...newActivity, countries: newActivity.countries?.filter(c => c.id !== id) });
         setNewActivity({ ...newActivity, countries: newActivity.countries?.filter(c => id !== id) })
-        console.log(newActivity.countries)
+
     }
     const handleSelectCountries = (e) => {
         e.preventDefault();
@@ -121,7 +121,7 @@ const NewActivity = () => {
         setShow(!show)
         setTimeout(function () {
             navigate('/home');
-        }, 2000)
+        }, 1000)
 
     };
     const { name, difficulty, duration, season, countries } = validations;
@@ -198,7 +198,7 @@ const Container = styled.div`
                         justify-content: center;
                         width: 100%;
                         height: 600px;
-                        margin-top: 85px;
+                        margin-top: 100px;
                         `;
 const Form = styled.form`
                         display: flex;
@@ -251,8 +251,8 @@ const Season = styled.select`
                         box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
                         width: 100%;
                         `;
-const Countries = styled(Name)`
-                        `;
+// const Countries = styled(Name)`
+//                         `;
 const Button = styled.button`
                         font-size: 16px;
                         line-height: 28px;

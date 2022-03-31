@@ -1,8 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Cards from './components/Cards';
 import Navbar from './components/Navbar';
 import NewActivity from './components/NewActivity';
-import Searchbar from './components/Searchbar';
 import CountryDetail from './Pages/CountryDetail';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';

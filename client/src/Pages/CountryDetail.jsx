@@ -27,8 +27,11 @@ const CountryDetail = () => {
                     <p><span>Continent: </span> <strong>{country.continent}</strong> </p>
                     <p><span>Capital: </span> <strong> {country.capital}</strong></p>
                     <p><span>Subregion: </span> <strong>{country.subregion}</strong></p>
-                    <p><span>Area: </span> <strong>{country.area}</strong></p>
-                    <p><span>Population</span> <strong>{country.population}</strong></p>
+                    <p><span>Area: </span> <strong>{new Intl.NumberFormat('en-US', {
+                        style: 'unit',
+                        unit: 'kilometer'
+                    }).format(country.area)}</strong></p>
+                    <p><span>Population</span> <strong>{new Intl.NumberFormat().format(country.population)}</strong></p>
                 </Information>
                 <ImageContainer>
                     <h4>Flag</h4>
@@ -58,12 +61,17 @@ const Container = styled.div`
     height: 80vh;
     margin-top: 80px;
 `;
-const Title = styled.h1``;
+const Title = styled.h1`
+
+`;
 const Information = styled.div`
     display: flex;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 300;
+    p{
+        font-size: 24px;
+    }
 `;
 const ImageContainer = styled.div`
     display: flex;
@@ -73,7 +81,7 @@ const ImageContainer = styled.div`
 `;
 const ActivityContainer = styled.div`
     display: flex;
-    width: 80%;
+    width: 300px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;

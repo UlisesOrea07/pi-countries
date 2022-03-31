@@ -6,6 +6,7 @@ export const GlobalStyled = createGlobalStyle`
         box-sizing: border-box;        
         width: 100%;
         height: 100%;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     *, *:before, *:after {    
         box-sizing:inherit ;
