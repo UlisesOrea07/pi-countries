@@ -4,19 +4,23 @@ import styled from "styled-components";
 import AddCancel from "../modals/CancelModal";
 import { getCountries } from "../actions/countriesAction";
 import Pill from "./Pill";
-import { postActivity } from "../actions/activitiesAction";
+import { getActivities, postActivity } from "../actions/activitiesAction";
 import { useNavigate } from "react-router-dom";
 import WarningModal from "../modals/WarningModal";
+import { darkSecundary, lightPrimary, lightSecundary } from "../utils/Colors";
 
 const NewActivity = () => {
     const [modalState, setModalState] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const Allcountries = useSelector(state => state.countries.countriesLoaded);
+    const AllActivities = useSelector(state => state.activities.activitiesLoaded);
     const [countrySelected, setCountrySelected] = useState([]);
-
+    const daysRegex = new RegExp("^[1-3][1-6]?[0-5]?$");
+    const difficultyRegex = new RegExp("^[1-6]$");
     useEffect(() => {
         dispatch(getCountries());
+        dispatch(getActivities());
     }, [dispatch]);
 
     const [newActivity, setNewActivity] = useState({
@@ -33,6 +37,28 @@ const NewActivity = () => {
         season: "",
         countries: ""
     });
+    const handlerRegex = (e) => {
+        let { name, value } = e.target;
+        if (name === "name" && value.length > 30) {
+            return value.slice(0, 30)
+        }
+        if (name === "difficulty" && !difficultyRegex.test(value)) {
+            return value.slice(0, value.length - 1);
+        }
+        if (name === "duration" && !daysRegex.test(value)) {
+            return value.slice(0, value.length - 1);
+        }
+        return value;
+    };
+
+    const itsTaken = (name) => {
+        if (name.length === 0) return false;
+        if (AllActivities.includes(name)) {
+            return true;
+        }
+        return false;
+
+    };
 
     const onClose = (id, e) => {
         e.preventDefault();
@@ -59,6 +85,10 @@ const NewActivity = () => {
         let isValid = true;
         if (name.trim() === '') {
             validations.name = "Name is required!";
+            isValid = false;
+        };
+        if (itsTaken(name)) {
+            validations.name = "name is already in use";
             isValid = false;
         };
         if (!difficulty) {
@@ -96,11 +126,15 @@ const NewActivity = () => {
         if (name === "name" && value.trim() === "") {
             message = `${name} is required!`;
         }
+        if (name === "name" && itsTaken(value)) {
+            message = "name is already in use";
+        }
+
         setValidations({ ...validations, [name]: message });
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewActivity({ ...newActivity, [name]: value })
+        setNewActivity({ ...newActivity, [name]: value.trim() })
     };
 
     const handleCancel = (e) => {
@@ -144,11 +178,11 @@ const NewActivity = () => {
                     <Title>
                         New Activity
                     </Title>
-                    <Name placeholder="Name" name="name" onChange={handleChange} onBlur={validatePerValues} />
+                    <Name placeholder="Name" name="name" onInput={e => e.target.value = handlerRegex(e)} onChange={handleChange} onBlur={validatePerValues} />
                     <span>{name}</span>
-                    <label>Dificulty <Dificulty name="difficulty" onChange={handleChange} onBlur={validatePerValues} /></label>
+                    <label>Dificulty <Dificulty name="difficulty" onInput={e => e.target.value = handlerRegex(e)} placeholder="(1-6)" onChange={handleChange} onBlur={validatePerValues} /></label>
                     <span>{difficulty}</span>
-                    <label>Duration <Duration name="duration" placeholder="days" onChange={handleChange} onBlur={validatePerValues} /></label>
+                    <label>Duration <Duration name="duration" onInput={e => e.target.value = handlerRegex(e)} placeholder="(1-365)" onChange={handleChange} onBlur={validatePerValues} /></label>
                     <span>{duration}</span>
                     <Season name="season" onChange={handleChange} onBlur={validatePerValues}>
                         <option value="">Season</option>
@@ -203,12 +237,17 @@ const Container = styled.div`
 const Form = styled.form`
                         display: flex;
                         flex-direction: column;
+                        background: ${lightSecundary};
                         width: 300px;
                         align-items: center;
                         justify-content: space-between;
                         height: 100%;
                         padding: 10px;
                         box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.345);
+
+                        span{
+                            color: red;
+                        }
                         `;
 const Title = styled.h1``;
 const Name = styled.input`
@@ -224,7 +263,9 @@ const Name = styled.input`
                         width: 100%;
                         `;
 const Dificulty = styled.input.attrs(
-    { type: "number" }
+    {
+        type: "text"
+    }
 )`
                         font-size: 16px;
                         line-height: 28px;
@@ -247,12 +288,10 @@ const Season = styled.select`
                         border: unset;
                         border-radius: 4px;
                         outline-color: rgb(84 105 212 / 0.5);
-                        background-color: rgb(255, 255, 255);
+                        background-color: ${lightPrimary};
                         box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
                         width: 100%;
                         `;
-// const Countries = styled(Name)`
-//                         `;
 const Button = styled.button`
                         font-size: 16px;
                         line-height: 28px;
@@ -262,6 +301,7 @@ const Button = styled.button`
                         min-height: 44px;
                         border-radius: 4px;
                         width: 100%;
+                        background: ${darkSecundary};
                         `;
 
 const CountryBox = styled.div`

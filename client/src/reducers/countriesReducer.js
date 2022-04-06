@@ -46,6 +46,7 @@ export const countriesReducer = (state = initialState, action) => {
             }
         case LOAD:
             return {
+                ...state,
                 load: true
             }
 

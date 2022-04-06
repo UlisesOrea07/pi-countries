@@ -4,35 +4,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { getContinents, getCountriesByActivity, getCountriesByContinent, orderAlphaA, orderAlphaZ, orderAsc, orderDesc } from "../actions/countriesAction";
 import { getActivities } from "../actions/activitiesAction";
 
-const Toolbar = () => {
+const Toolbar = ({ countries }) => {
     const [orderAlpha, setOrderAlpha] = useState(true);
     const [orderPopulation, setOrderPopulation] = useState(true);
     const [capital, setcapital] = useState('A-Z');
     const [arrow, setArrow] = useState('%E2%86%93 %E2%86%91');
-    const countries = useSelector(state => state.countries.countriesLoaded);
+    // const countries = useSelector(state => state.countries.countriesLoaded);
     const activities = useSelector(state => state.activities.activitiesLoaded);
     const continents = useSelector(state => state.countries.continentsLoaded);
     const dispatch = useDispatch();
     const [filterSelected, setFilterSelected] = useState([]);
     const [isActivity, setIsActivity] = useState(false);
-
     useEffect(() => {
         dispatch(getContinents());
         dispatch(getActivities());
+        console.log("adentro")
     }, [dispatch])
 
+    // console.log(filterSelected)
+
     const handleFilter = (e) => {
+        console.log(continents)
         const filter = e.target.value;
         if (filter === "Activity") {
-            dispatch(getActivities());
+            // dispatch(getActivities());
             setFilterSelected(activities);
             setIsActivity(true);
         } else if (filter === "Continent") {
-            dispatch(getContinents());
+            // dispatch(getContinents());
             setFilterSelected(continents);
             setIsActivity(false);
         } else {
-            setFilterSelected([]);
+            setFilterSelected(["hola", "queso"]);
         }
     };
     const handlerAction = (e) => {
@@ -103,6 +106,7 @@ const Container = styled.div`
     justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
+    width: 100%;
 `;
 const OrderButton = styled.button`
     font-size: 11px;

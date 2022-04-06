@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { lightPrimary } from "../utils/Colors";
 
 const WarningModal = ({ show }) => {
 
@@ -7,7 +8,7 @@ const WarningModal = ({ show }) => {
             {show &&
                 <Overlay >
                     <ModalContainer>
-                        <p>Add</p>
+                        <p>Activity added</p>
                         <p></p>
                         <p>successfully</p>
                         <img src="https://images.vexels.com/media/users/3/143372/isolated/lists/6e633a235ea0d523078e667b9f84f15b-marca-de-verificacion-azul.png" width="30px" alt="img not found" />
@@ -40,6 +41,7 @@ const ModalContainer = styled.div`
     padding: 20px;
     position: relative;
     width: 300px;
+    background: ${lightPrimary};
     justify-content: center;
     align-items: center;
     display: flex;

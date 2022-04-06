@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { darkPrimary, darkSecundary, lightPrimary, lightSecundary } from "../utils/Colors";
 
-const Card = ({ id, name, flag, continent, population, area }) => {
+const Card = ({ id, name, flag, continent, population, area, subregion }) => {
     return (
         <LINK to={`/details/${id}`} >
             <ContainerCard >
@@ -41,7 +42,8 @@ const ContainerCard = styled.div`
     align-items: center;
     /* border: solid 3px; */
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.377);
-    margin: 5px;
+    margin: 5px;    
+    background: ${lightSecundary};
 `;
 const HeadCard = styled.div`
     display: flex;
@@ -54,7 +56,8 @@ const HeadCard = styled.div`
     width: 96%;
     align-items: center;
     justify-content: center;
-    background: lightblue;
+    color: ${lightPrimary};
+    background: ${darkPrimary};
 `;
 const BodyCard = styled.div`
     display: flex;
@@ -63,6 +66,7 @@ const BodyCard = styled.div`
     width: 100%;
     align-items: center;
     font-size: 12px;
+    color: ${darkPrimary};
 `;
 const SectionLeft = styled.div`
     display: flex;
@@ -71,7 +75,6 @@ const SectionLeft = styled.div`
     margin: 4px;
     align-items: center;
     justify-content: center;
-    color: black;
     width: 50%;
 `;
 const SectionRigth = styled(SectionLeft)`
@@ -92,6 +95,7 @@ const Img = styled.img`
 `;
 const LINK = styled(Link)`
     text-decoration: none;
+    outline: none;
 `;
 
 export default Card;

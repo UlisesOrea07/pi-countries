@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { darkPrimary, lightPrimary } from './Colors';
 
 export const GlobalStyled = createGlobalStyle`
     
@@ -6,6 +7,7 @@ export const GlobalStyled = createGlobalStyle`
         box-sizing: border-box;        
         width: 100%;
         height: 100%;
+        color: ${darkPrimary};
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     *, *:before, *:after {    

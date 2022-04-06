@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { getCountry } from "../actions/countriesAction";
 import Collapsible from "../components/Collapsible";
 import Loading from "../components/Loading";
+import { lightSecundary } from "../utils/Colors";
 
 const CountryDetail = () => {
     const loading = useSelector(state => state.countries.load);
@@ -15,7 +16,6 @@ const CountryDetail = () => {
         dispatch(getCountry(id));
     }, [dispatch]);
     const country = useSelector(state => state.countries.countryDetail)
-    console.log(country);
     return (
         loading ? <Loading /> : country ?
             <Container>
@@ -40,11 +40,12 @@ const CountryDetail = () => {
                 <ActivityContainer>
                     <h3>Tourist Activities</h3>
                     {
-                        country?.activities?.map(activity => {
+                        country?.activities?.length > 0 ? country.activities.map(activity => {
                             return (
                                 <Collapsible key={activity.id} activity={activity} />
                             )
                         })
+                            : <h3>No activities</h3>
                     }
                 </ActivityContainer>
             </Container> : null
@@ -58,8 +59,10 @@ const Container = styled.div`
     justify-content: space-around;
     align-items: center;
     margin-top: 20px;
-    height: 80vh;
+    padding: 10px;
+    height: 90vh;
     margin-top: 80px;
+    background: ${lightSecundary};
 `;
 const Title = styled.h1`
 

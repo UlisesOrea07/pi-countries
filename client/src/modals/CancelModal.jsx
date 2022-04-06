@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { lightPrimary } from "../utils/Colors";
 
 
 const AddCancel = ({ children, modalState, setModalState }) => {
@@ -47,6 +48,7 @@ const ModalContainer = styled.div`
     padding: 20px;
     position: relative;
     width: 500px;
+    background: ${lightPrimary};
 `;
 const ModalHead = styled.div`
     align-items: center;

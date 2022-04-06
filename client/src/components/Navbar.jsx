@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { darkPrimary, darkSecundary, lightPrimary, lightSecundary } from "../utils/Colors";
 import logo from "./../images/NavbarLogo.png"
 
 
@@ -38,7 +39,7 @@ const Nav = styled.div`
    justify-content: space-between;
    align-items: center;
    flex-wrap: wrap;
-   background: lightblue;
+   background: ${lightPrimary};
 `;
 
 
@@ -65,7 +66,7 @@ const MenuLink = styled(Link)`
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    color: blueviolet;
+    color: ${darkPrimary};
     transition: all 0.3s ease-in;
     font-size: 28px;
     &:hover{
@@ -87,7 +88,7 @@ const Menu = styled.div`
     align-items: center;
     position: relative; 
     height: 90%;
-    background: lightblue;
+    background: ${lightPrimary};
     @media(max-width: 768px){
         position: absolute;
         top:80px;

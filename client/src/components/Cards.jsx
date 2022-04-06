@@ -1,55 +1,34 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { useDispatch, useSelector } from 'react-redux';
-import { getCountries } from '../actions/countriesAction';
+import { useSelector } from 'react-redux';
 import Loading from "./Loading";
-import Pagination from "./Pagination";
-const Cards = () => {
-    const dispatch = useDispatch();
-    const countries = useSelector(state => state.countries.countriesLoaded);
+const Cards = ({ currentCountries }) => {
     const loading = useSelector(state => state.countries.load);
 
-    useEffect(() => {
-        dispatch(getCountries())
-    }, [dispatch]);
-
-    const [currentCountries, setCurrentCountries] = useState([]);
-
-    const onPageChanged = data => {
-        const { currentPage, pageLimit } = data;
-        const offset = (currentPage - 1) * pageLimit;
-        const currentCountries = countries?.slice(offset, offset + pageLimit);
-        setCurrentCountries(currentCountries);
-    }
-
-    const totalCountries = countries?.length;
-
     return (
-
         loading ? <Loading /> :
-            <>
-                <Container>
-                    {
-                        currentCountries?.map(country => {
-                            return (
-                                <Card
-                                    key={country.id}
-                                    id={country.id}
-                                    name={country.name}
-                                    flag={country.flag}
-                                    continent={country.continent}
-                                    population={country.population}
-                                    area={country.area}
-                                />
-                            )
-                        })
+            currentCountries?.length === 0 ? <NoRsult>We're sorry, your search returned no results.</NoRsult> :
+                <>
+                    <Container>
+                        {
+                            currentCountries?.map(country => {
+                                return (
+                                    <Card
+                                        key={country.id}
+                                        id={country.id}
+                                        name={country.name}
+                                        flag={country.flag}
+                                        continent={country.continent}
+                                        population={country.population}
+                                        area={country.area}
+                                    />
+                                )
+                            })
 
-                    }
-                    <Pagination totalRecords={totalCountries} pageLimit={9} onPageChanged={onPageChanged} />
+                        }
 
-                </Container>
-            </>
+                    </Container>
+                </>
     )
 }
 //designe 
@@ -60,5 +39,11 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+`;
+const NoRsult = styled.p`
+    margin: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
 `;
 export default Cards;

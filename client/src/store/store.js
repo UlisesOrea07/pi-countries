@@ -7,5 +7,4 @@ const store = createStore(
     rootReducers,
     applyMiddleware(thunk)
 );
-console.log(store.getState())
 export default store;
