@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { getCountry } from "../actions/countriesAction";
 import Collapsible from "../components/Collapsible";
 import Loading from "../components/Loading";
-import { lightSecundary } from "../utils/Colors";
 
 const CountryDetail = () => {
     const loading = useSelector(state => state.countries.load);
@@ -34,8 +33,9 @@ const CountryDetail = () => {
                     <p><span>Population</span> <strong>{new Intl.NumberFormat().format(country.population)}</strong></p>
                 </Information>
                 <ImageContainer>
-                    <h4>Flag</h4>
-                    <img src={country.flag} width="200px" alt="imge not found" />
+                    <h4>Main Flag</h4>
+                    <br/>
+                    <Img src={country.flag} width="200px" alt="imge not found" />
                 </ImageContainer>
                 <ActivityContainer>
                     <h3>Tourist Activities</h3>
@@ -62,7 +62,6 @@ const Container = styled.div`
     padding: 10px;
     height: 90vh;
     margin-top: 80px;
-    background: ${lightSecundary};
 `;
 const Title = styled.h1`
 
@@ -71,9 +70,9 @@ const Information = styled.div`
     display: flex;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 300;
+    font-weight: 200;
     p{
-        font-size: 24px;
+        font-size: 20px;
     }
 `;
 const ImageContainer = styled.div`
@@ -88,5 +87,8 @@ const ActivityContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+`;
+const Img = styled.img`
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.377);    
 `;
 export default CountryDetail;

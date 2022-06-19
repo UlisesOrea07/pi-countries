@@ -42,8 +42,7 @@ const ContainerCard = styled.div`
     align-items: center;
     /* border: solid 3px; */
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.377);
-    margin: 5px;    
-    background: ${lightSecundary};
+    margin: 10px;
 `;
 const HeadCard = styled.div`
     display: flex;
@@ -56,8 +55,8 @@ const HeadCard = styled.div`
     width: 96%;
     align-items: center;
     justify-content: center;
-    color: ${lightPrimary};
-    background: ${darkPrimary};
+    color: ${darkPrimary};
+    background: ${lightPrimary};
 `;
 const BodyCard = styled.div`
     display: flex;

@@ -121,11 +121,10 @@ const BoxContainer = styled.div`
     margin: 0;
     padding: 0;   
 `;
-const Box = styled.div`
-    display: inline;
+const Box = styled.button`
+    border: none;
     margin: 10px;
     padding: 5px;
-    /* border: solid 1px; */
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.100);
     background: lightcyan;
     border-radius: 4px;

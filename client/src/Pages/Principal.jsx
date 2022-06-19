@@ -33,21 +33,23 @@ const Container = styled.div`
     background-position: center center center;
     position: relative;    
     width: 100vw;
-    margin-top: 80px;
+    /* margin-top: 80px; */
     @media(max-width: 768px){
         background-image: url(${heroMobile});
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: right left;
+        margin-top: 20px;
+        background-position: top;
         justify-content: start;
         align-items: center;
-        height: 90vh;
+        height: 100vh;
     }
 `;
 const Title = styled.h1`
     font-size: 48px;
     letter-spacing: 0.2em;
     color: white;
+    margin-top: 80px;
 `;
 const Description = styled.h3`
     margin: 20px;

@@ -16,7 +16,7 @@ const NewActivity = () => {
     const Allcountries = useSelector(state => state.countries.countriesLoaded);
     const AllActivities = useSelector(state => state.activities.activitiesLoaded);
     const [countrySelected, setCountrySelected] = useState([]);
-    const daysRegex = new RegExp("^[1-3][1-6]?[0-5]?$");
+    const daysRegex = new RegExp("^[1-9][0-9]?[0-9]?$");
     const difficultyRegex = new RegExp("^[1-6]$");
     useEffect(() => {
         dispatch(getCountries());
@@ -182,7 +182,7 @@ const NewActivity = () => {
                     <span>{name}</span>
                     <label>Dificulty <Dificulty name="difficulty" onInput={e => e.target.value = handlerRegex(e)} placeholder="(1-6)" onChange={handleChange} onBlur={validatePerValues} /></label>
                     <span>{difficulty}</span>
-                    <label>Duration <Duration name="duration" onInput={e => e.target.value = handlerRegex(e)} placeholder="(1-365)" onChange={handleChange} onBlur={validatePerValues} /></label>
+                    <label>Duration <Duration name="duration" onInput={e => e.target.value = handlerRegex(e)} placeholder="(1-365) Days" onChange={handleChange} onBlur={validatePerValues} /></label>
                     <span>{duration}</span>
                     <Season name="season" onChange={handleChange} onBlur={validatePerValues}>
                         <option value="">Season</option>
@@ -237,8 +237,7 @@ const Container = styled.div`
 const Form = styled.form`
                         display: flex;
                         flex-direction: column;
-                        background: ${lightSecundary};
-                        width: 300px;
+                        width: 400px;
                         align-items: center;
                         justify-content: space-between;
                         height: 100%;
@@ -310,16 +309,16 @@ const CountryBox = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-                        line-height: 28px;
-                        padding: 8px 8px;
-                        max-height: 44px;
-                        min-height: 44px;
-                        border: unset;
-                        border-radius: 4px;
-                        outline-color: rgb(84 105 212 / 0.5);
-                        background-color: rgb(255, 255, 255);
-                        box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
-                        width: 100%;
+    line-height: 28px;
+    padding: 8px 8px;
+    max-height: 44px;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: rgb(84 105 212 / 0.5);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
+    width: 80%;
 `;
 const SelectCountry = styled(Season)``;
 
