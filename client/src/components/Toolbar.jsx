@@ -18,13 +18,9 @@ const Toolbar = ({ countries }) => {
     useEffect(() => {
         dispatch(getContinents());
         dispatch(getActivities());
-        console.log("adentro")
     }, [dispatch])
 
-    // console.log(filterSelected)
-
     const handleFilter = (e) => {
-        console.log(continents)
         const filter = e.target.value;
         if (filter === "Activity") {
             // dispatch(getActivities());
