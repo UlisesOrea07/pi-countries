@@ -32,13 +32,21 @@ const Cards = ({ currentCountries }) => {
     )
 }
 //designe 
+// const Container = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: space-between;
+//     width: 100%;
+// `;
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: center;
+    width: 72%;
 `;
 const NoRsult = styled.p`
     margin: 20px;

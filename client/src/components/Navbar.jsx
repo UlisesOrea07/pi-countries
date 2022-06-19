@@ -71,12 +71,13 @@ const MenuLink = styled(Link)`
     font-size: 28px;
     &:hover{
         color: white;
-        background: gray;
+        background: #219ebc;
         transition: 0.2ms ease;
     }
     @media(max-width: 768px){
         width: 100%;
         text-decoration: none;
+        margin-top: 100px;
         &:focus, &:hover, &:visited, &:link, &:active {
          text-decoration: none;
         }
@@ -94,10 +95,9 @@ const Menu = styled.div`
         top:80px;
         left: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
         width: 100%;
-        height: 90vh;
-        justify-content: center;
+        height: 100vh;
+        justify-content: flex-start;
         flex-direction: column;
-        align-items: center;
         opacity: 0.95;
         transition:  0.3s ease-in;
         z-index: 4;

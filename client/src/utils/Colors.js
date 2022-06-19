@@ -1,4 +1,4 @@
-export const darkPrimary = "#072227";
-export const darkSecundary = "#35858B";
-export const lightSecundary = "#4FBDBA";
-export const lightPrimary = "#AEFEFF";
+export const darkPrimary = "#023047";
+export const darkSecundary = "#8ecae6";
+export const lightSecundary = "#8ecae6";
+export const lightPrimary = "#8ecae6";

@@ -94,7 +94,7 @@ const Toolbar = ({ countries }) => {
                 <Letter>{capital[0]}</Letter> - {capital[2]}
             </OrderButton>
             <OrderButton onClick={handlerOrderPopulation}>
-                POP <Letter>{decodeURI(arrow)}</Letter>
+                pop <Letter>{decodeURI(arrow)}</Letter>
             </OrderButton>
         </Container>
     );
@@ -117,6 +117,8 @@ const OrderButton = styled.button`
     border-radius: 4px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.245);
     width: 50px;
+    background-color: #219ebc;
+    color: #fff;
 `;
 const Letter = styled.span`
     color: red;
@@ -133,7 +135,8 @@ const Filter = styled.select`
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.245);
     width: 80px;
     outline-color: rgb(84 105 212 / 0.5);
-    background-color: rgb(255, 255, 255);
+    background-color: #219ebc;
+    color: #fff;
 `;
 
 export default Toolbar;

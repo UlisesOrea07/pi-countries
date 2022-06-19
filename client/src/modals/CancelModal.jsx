@@ -48,7 +48,6 @@ const ModalContainer = styled.div`
     padding: 20px;
     position: relative;
     width: 500px;
-    background: ${lightPrimary};
 `;
 const ModalHead = styled.div`
     align-items: center;
@@ -75,7 +74,7 @@ const ClosedButton = styled.button`
     position: absolute;
     right: 20px;
     top: 15px;
-    transition: all.3s ease all;
+    transition: all 3s ease all;
     width: 30px;
 
     &:hover{
